@@ -1,0 +1,71 @@
+# consent.yaml — Remembrance Pipelines
+#
+# This file MUST be completed and co-signed before any audio or transcript
+# is processed. The pipeline will halt if this file is absent or invalid.
+#
+# Copy this template to data/raw/<interview-id>-consent.yaml and fill every field.
+# Do not leave placeholder values in a production consent file.
+
+schema_version: "1.0"
+
+# ── Contributor ────────────────────────────────────────────────────────────────
+contributor:
+  name: PLACEHOLDER_FULL_NAME          # Legal name of the person whose voice/story this is
+  contact: PLACEHOLDER_EMAIL_OR_PHONE  # How to reach them with questions or to renew consent
+  community: PLACEHOLDER_COMMUNITY     # e.g. "Moorestown WestEnd Descendants Network"
+
+# ── Recording ──────────────────────────────────────────────────────────────────
+recording:
+  interview_id: PLACEHOLDER_ID         # Unique identifier, e.g. "MWEDN-2025-001"
+  date: PLACEHOLDER_DATE               # ISO 8601, e.g. "2025-06-15"
+  interviewer: PLACEHOLDER_INTERVIEWER # Name of the interviewer
+  location: PLACEHOLDER_LOCATION       # City/community where the interview was conducted
+  language: en                         # BCP 47 language tag, e.g. "en", "es", "ht"
+
+# ── Consent Scope ──────────────────────────────────────────────────────────────
+consent_for:
+  transcription: false       # Set true to allow automated speech-to-text
+  diarization: false         # Set true to allow speaker identification
+  thematic_tagging: false    # Set true to allow AI theme extraction
+  internal_archive: false    # Set true to store in community archive
+  public_release: false      # Set true to allow any public-facing use
+  curriculum_use: false      # Set true for educational/curriculum inclusion
+  research_use: false        # Set true for academic research use
+
+# ── Retention ──────────────────────────────────────────────────────────────────
+retention_until: PLACEHOLDER_DATE      # ISO 8601 date — data is deleted after this date
+                                       # e.g. "2035-01-01" or "indefinite" with community approval
+
+# ── Embargo ────────────────────────────────────────────────────────────────────
+embargo:
+  active: true                         # true = held from any release until lifted
+  lift_date: null                      # ISO 8601 date when embargo ends, or null = community decides
+  reason: PLACEHOLDER_REASON          # Brief reason, e.g. "pending family review"
+
+# ── Community Review ───────────────────────────────────────────────────────────
+community_review:
+  required: true                       # true = outputs must be reviewed before any release
+  reviewer: PLACEHOLDER_REVIEWER      # Name/role of designated community reviewer
+  reviewed: false                      # Set true only after review is complete
+  reviewed_date: null                  # ISO 8601 date of completed review
+  notes: ""                            # Reviewer notes, restrictions, or conditions
+
+# ── Signatures ─────────────────────────────────────────────────────────────────
+# Both signatures are required. Date format: ISO 8601.
+signatures:
+  contributor:
+    signed: false
+    date: null
+    method: PLACEHOLDER                # e.g. "written", "recorded-verbal", "digital"
+  steward:
+    name: PLACEHOLDER_STEWARD         # Cypher LLC representative name
+    signed: false
+    date: null
+
+# ── Revocation ─────────────────────────────────────────────────────────────────
+# Contributors may revoke consent at any time. Document revocations here.
+revocation:
+  revoked: false
+  revoked_date: null
+  scope: null                          # "full" or specific fields from consent_for
+  notes: ""

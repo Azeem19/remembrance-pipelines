@@ -1,0 +1,30 @@
+[project]
+name = "remembrance-pipelines"
+version = "0.1.0"
+description = "Oral history transcription and archival pipelines for Black and marginalized communities"
+requires-python = ">=3.11"
+dependencies = [
+    "openai-whisper>=20231117",
+    "pyannote.audio>=3.1.1",
+    "anthropic>=0.28.0",
+    "pydantic>=2.7.0",
+    "pyyaml>=6.0.1",
+    "pandas>=2.2.0",
+    "chromadb>=0.5.0",
+    "sentence-transformers>=3.0.0",
+    "torch>=2.2.0",
+    "torchaudio>=2.2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
