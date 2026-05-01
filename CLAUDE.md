@@ -9,7 +9,7 @@ through oral history preservation, consent-first data pipelines, and community
 archiving tools. This repo receives memory. It does not extract it.
 
 ## Brand
-Deep teal #215244 | Gold/Bronze #B37602 | Accent #4AB396
+Deep teal #215244 | Gold/Bronze #B37602 | Sage Green #2D5A52| Accent #4AB396 | burnt gold accents #D4A017
 
 ## Core Values
 - Data sovereignty: community owns its data at every step
@@ -20,7 +20,7 @@ Deep teal #215244 | Gold/Bronze #B37602 | Accent #4AB396
 ## Active Partners
 - Moorestown WestEnd Descendants Network
 - Moorestown Historical Society
-- KIPP NYC (curriculum pilot)
+- [pending] NYC/NJ/DC area School Partner (curriculum pilot)
 
 ## What Lives Here
 - Oral-history transcription pipeline (Whisper + pyannote diarization)
