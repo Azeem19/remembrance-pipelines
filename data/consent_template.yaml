@@ -1,0 +1,22 @@
+# Consent Template — The Remembrance Day Project
+# Fill out one file per interview. Save as consent_<interviewee_id>.yaml
+# This file must be present before any pipeline processing begins.
+
+recorded_by: ""                  # Name of interviewer or organization conducting the recording
+
+interview_date: ""               # ISO 8601 format: YYYY-MM-DD
+
+consent_for:                     # List all permitted uses. Remove any that do not apply.
+  - transcription
+  - thematic_tagging
+  - archival_storage
+  - educational_use
+  - public_exhibition
+  - community_sharing
+
+retention_until: ""              # ISO 8601 date (YYYY-MM-DD) or "indefinite"
+
+embargo: false                   # Set to true to restrict access until embargo_lift_date
+embargo_lift_date: ""            # Required if embargo is true. ISO 8601: YYYY-MM-DD
+
+community_review_required: true  # If true, output must be reviewed by community steward before release
