@@ -20,3 +20,6 @@ embargo: false                   # Set to true to restrict access until embargo_
 embargo_lift_date: ""            # Required if embargo is true. ISO 8601: YYYY-MM-DD
 
 community_review_required: true  # If true, output must be reviewed by community steward before release
+
+community_steward: ""        # Name or role of person responsible for review
+
