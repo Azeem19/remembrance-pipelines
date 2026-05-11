@@ -1,2 +1,104 @@
 What did data sovereignty mean this week, in code?
 
+Week 2. Q: What did data sovereignty mean this week, in code?
+
+ENTRY KEYS: 
+defining data sovereignity --  DEFINE(data + sovereignity) 
+
+DEFINE
+(+) data: direct monetizable information, often unstructured and accumulated over the course of "doing" and "being". _DEFINITION SOURCED_ READING FROM CYPHER X BUILD FOUNDATIONAL READING OF "Infonomics" Douglas B. Laney  
+→ Learn to treat data as an asset class that can be valued, managed, and monetized. (source:https://drive.google.com/file/d/1dk7fsBDqHb3RChO8UTfBEx8KmzU6YmG2/view?usp=drivesdk)
+Takeaway: Start thinking, What is my data worth? Who benefits from it? How can I reuse it across clients?
+
+(+) sovereignity: the supreme, absolute authority and self-governing power of a state to manage its affairs; to be free of external control.   
+→ Learn to ask, "Liberation from what?" or "Freedom to do, say, or feel what?"(source: Sovereignty & Remembrance book)
+Takeaway: 
+- Self determination is inherit to a free individuals. 
+- Determinining your own story, defining language for yourself and for those you call "kin" or community is foundational  
+- Self governance means being free of foreign/ 3rd party influence
+- Creating authentically to your culture should feel empowering and anchored in your history when free peole are allowed to create
+- Supreme authority means all your creation are controlled by you and your community; 
+
+(+) data sovereignty: an individual or community holding sumpreme ownership over the information they produce, 
+and holding absolte authority in how the information they produce is valued, managed and monetized: 
+- how it is valued, 
+- who benefits from its value 
+- who has access to it
+→ Learn to ask, "What data/knowledge do I have that others don't?"
+→ Learn to ask, "How can we use information (my data + external sources) to make better/faster decisions? 
+→ Learn to ask, "What questions can we ask now that couldn’t be addressed earlier (before we knew the value of my informamtion)?"
+Takeaway: 
+- data sovereignty is about ppl and communities of data producers, and information holders having an inherit and supreme control over how the information they produce, exchange, and accumulate. 
+- data sovereighty allows individual ppl to live a rich life, where they can trust, have access and feel secure about the information they value and is valued in the society they live in. 
+- determining value of information is a dialectic, but who benefits from data's value should be determined by the creator of the information and the community
+- the power to preserve and license information lie in the individual producer, not the owner of the medium through with information is transfered or held
+- language, art, and math afford all individuals the mediums to express, share, and accumulate data, and thus produce knowledge that holds value for how an individual, institution, or society 
+
+Thus W1 Q: What did data sovereignty mean this week, in code?
+
+A) Personally: 
+
+#The Lines from last week that stick:
+#I don't believe I have data sovereignty, and I think that is a class issue as well one of race. At the same time, I'm building a platform that allows me to capture that great pieces of IP I have without prying ears.
+#I'm building the RIL and Remembrance Day to maximize this growth in my data sovereignty by also sovereignty of other. 
+
+Wk2: I'm working on my first "vibe" coded artifact, and learning that I need to be explicit in every step about the relevance and impact of our approach to building a tool that doesn't extract and gives 
+people the experience of tach that operates with sovereignty as a feature. 
+
+Beyond my reflection on soverenty in the form of ownership I am also thinking more about privacy. I recently sat with my dad over lunch and we discussed the role we play with clients' data. 
+I really want them to value our commitment to privacy and permission. Security is such a high risk area. I want to keep folks info secure, and the best I can do is make sure they own it the whole time and we do. 
+Tha doesn't make us not responsible, but I'm big on normative behavior change, not just building better moats and firewalls. 
+
+I recenlty had to ensure that the claude understood that the claude chat intake artifact and the transcription pipeline are connected. And that we need to ensure
+that we build the prototype so it performs informed consent, provides state change on demand and not one-time, has an embargo feature, as well as a "forget me" by. 
+i'm building the tool that I'd want/ intend my family to use. Both pieces at once, with a central idea. How do I ensure that folks know their data is secure, and that it 
+has value.  
+
+
+B) In Relation to Others:
+
+Wk1 words that stick: 
+"In code" data sovereignty shows up in the tension between collaboration, ownership, and managing who benefits from information. 
+Many of our most famous tech companies are born from stories of individuals arguing who owns "the code": 
+  (1) the language used to express the thought/idea 
+  (2) the benefit gained from that language being expressed 
+  (3) the ratio of ownership or benefit to be attributed to an individual or community 
+  (4) how long that individual or community may benefit from that info exclusively 
+  (5) least considered is who owns the unexpected accumulated, often unstructured, outputs of the code, and 
+are those unexpected outputs owed by the producer(s), the witness (those who recognize the value of the information but don't create it); or 
+do those who generator/ create value from the information the owners of these unexpected productions (i.e. dark data)
+
+Wk2: I'm still think about the value generated from my access to the data, to the stories. I also think about how the consent function, and how a council gets info on a new story
+and myst approve its use for the public. I love that features, and I think it embodies a necesssary redundancy. We not only give the storyteller the ability to control the status of access
+to their IP, but also the when, the how long, and for what. and they can change their minds. The council gets alerted and can approve a story, and Cypher's access is subject to the owners choice. 
+What we produce while we have access is ours. I'd like to believe that is fair given the human centered controls.
+
+C) In Relation to Systems:
+Wk1 lines that stick: 
+When the information extracted from a system doesn't lead to better decisions, or faster decisions that evenutaly lead to better choices, then what is the value of that process of extraction? 
+
+Wk2: I know we can't always know the value of something, at least in perpetuety. Data, memory, is an asset, so are the stories we believe. The stories define our approach to decisons, our cultural expression
+our value of self and others. Thus they define the value a data holds, which can be relative. So as I build off the collecive memories, stoires, data of others, what are the 
+narratives that I hold that I can weave into the fabric of my outputs, narratives that are of a futures, anchored in the memories of many, redreamt by a me- a man with audacity to extract worldviews and liberatory frameworks.
+
+D) In Relation to Cypher: 
+Wk1: We're going to continue provide a proof-of-concept that trust access and sovereignty are enough of a value proposition. 
+We're here to support the psychologicla safety of our communities and the business ecosystem we serve. So by holding a "non-negotiable" position on protecting our clients data, IP, data privacy we're able to 
+support their journey as a sovereign producer of data and conscious generator of monetizable information. We're a symbiotic organism like a bromaid in the jungle. We can profit from the generate opportutnites that come from the unexpected accumulations, and "dark data". 
+ 
+Wk2: I think that the website will be a beacon. I need to think about what that means, and how I can really geve my family on board. 
+
+
+E) In Relation to Remembrance: 
+Wk1:
+
+if you've provides information that is intended to create insight-to-action you're eexpected to pay (in time on platform) or $$ to "reach" more ppl. 
+A medium that forces you to pay more (time/$$) to exchanage your knowledge with ppl is disrupting the sovereignty.
+Remembrance is a bet, that by, (1) coding in consent at both the human and digital layers (2) focusing on desigining a medium that is non-extractive, and connective we're able to give folks permission to ask:
+1. "what information do I hold that has value to me or my community?"
+2. "where am I giving away information about myself, and how is that lack of privacy limiting?"
+3. "if I didn't have this medium (IG, FB, TikTok) how would I share my thoughts with the world or receive information that can benefit me?"
+
+Wk2: None extractive, it simple we're doing so with consent at all layers. I think we're moving away from effortless UX and wanted to create permission and 
+generate engagement with a sence of thoughtfulness, maybe remember this experience later as human-cenetered even if isn't human to human.
+
