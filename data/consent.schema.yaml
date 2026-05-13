@@ -1,0 +1,77 @@
+# Consent Schema — The Remembrance Day Project
+# This is the authoritative spec. Pipelines validate per-interview consent files against this.
+# Instance files (consent_<interviewee_id>.yaml) must conform to this schema.
+
+schema_version: "1.0"
+
+fields:
+  interviewee:
+    type: string
+    required: true
+
+  interview_date:
+    type: string
+    format: date          # ISO 8601: YYYY-MM-DD
+    required: true
+
+  interviewer:
+    type: string
+    required: true
+
+  location:
+    type: string
+    required: false
+
+  consent_for:
+    type: array
+    required: true
+    min_items: 1
+    enum:
+      - transcription
+      - thematic_tagging
+      - archival_storage
+      - educational_use
+      - public_exhibition
+      - community_sharing
+
+  retention_until:
+    type: string
+    required: true
+    enum:
+      - indefinite
+      - "50 Years"
+      - "25 Years"
+      - "10 Years"
+      - Until Withdrawn
+
+  embargo:
+    type: boolean
+    required: true
+    default: false
+
+  embargo_lift_date:
+    type: string
+    format: date          # ISO 8601: YYYY-MM-DD. Required when embargo is true.
+    required: false
+
+  community_review_required:
+    type: boolean
+    required: true
+    default: true
+
+  community_steward:
+    type: string
+    required: false
+
+  notes:
+    type: string
+    required: false
+
+  signed_by_initials:
+    type: string
+    required: true
+
+  consent_recorded_at:
+    type: string
+    format: datetime      # ISO 8601: YYYY-MM-DDTHH:MM:SS
+    required: true
