@@ -6,6 +6,9 @@ before architecting new pipelines or proposing methodology changes.
 
 When a tag matches the task at hand, apply the methodology — don't reinvent.
 
+**Update protocol:** New entries appended weekly after Tuesday reading session.
+Entries follow the schema documented at the bottom of this file.
+
 ---
 
 ## Wk3 | 5.12.26
