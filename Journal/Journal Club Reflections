@@ -10,6 +10,17 @@ ROTATING PROMPTS (artifact + mission lens):
 • Where does this validate or challenge Cypher's data sovereignty stance?
 • How would Du Bois have visualized these findings?
 
+EPS Short Reflections |
+Prompt:
+
+Response: 
+Key Insight| 
+
+===
+Terms|
+Source| 
+Tags|
+
 
 WK1| 5.12.26
 
@@ -101,3 +112,34 @@ tion and cognitive construction in online and blended education (Garrison et al.
 2001). The CoI framework functions through the interaction of three dynamically
 interdependent elements: cognitive presence, social presence, and teaching presence
 (Kanuka & Garrison, 2004)
+
+
+EPS Short Reflections | VogFashion: an AI-driven intelligent system for fashion design | THEME - RAG
+Prompt: How does this paper's method shape THIS WEEK'S artifact build?
+
+Response: I'm thinking about how to provide simple ways to ensure thate QA isn't all artifical or from Cypher. Per past
+work with clients in MEL, survey design, and reporting. We can incorporate impact labs as feedback sesssions as valuable QA
+and also improve hte AI tools we're providing, managing, or evalutating. 
+
+Key Insight| 
+
+CSUQ questions are a QA measure for GenAI user satifaction. 
+
+Contrastive Language-Image Pretraining (CLIP)2 to enable intelligent fashion design capabilities. Metacognition frameworks 
+support optimization, and measure the semantic relevance between the generated image and the corresponding textual prompt. If the generated
+image fails to satisfy a predefined perceptual quality threshold, the system automatically triggers iterative refinement 
+until a satisfactory result is achieved.
+
+===
+Terms|
+
+	1. microservices | architect retrieval pipeline using NEO4j knowledge groups of the "how" to coordinate the "tasks" and assets
+in the memory to iterate on outcomes, enhance the prompt. 
+
+	2. NEOJ4 | enabling the system to quickly query knowledge relevant to the user’s input prompts
+when facing knowledge gaps, thereby generating fashion images that better align with user requirements. 
+
+
+Source| Kehan Chen, Chen Gao, Xuechen Guo, Yanran Liu, Zhengli Liu∗ iD, Zhan Zheng, Bangchao Wang
+Wuhan Textile University, Wuhan, China
+Tags| GenAI + Chat + NEO4j + microservices | RAG
