@@ -24,6 +24,63 @@ Tags|
 
 WK1| 5.12.26
 
+EPS Short Reflections | The attribution crisis in LLM search results: Estimating ecosystem exploitation
+
+Prompt: Where does this validate or challenge Cypher's data sovereignty stance?
+
+Response: 
+
+This really validate our point about data sovereignty that we write about weekly. The use of LLMs is not theoretically extractive.
+Under the framework that websites, and databases are "workers" the LLM is "stealing" extracting value with compensation, in the
+case of the internet that is a "social contract" of citation. 
+
+This is a systemic error not a random one when it occurs, its a design issue AKA a choice by humans. I believe I can :
+		a - design nonextractive AI tools
+		b - measure the attribution gap of exisiting tools
+		c - write about Ai policy with a focus on attribution and drive actual ROI on operational work, rather than generating/ 
+producing.
+
+
+Key Insight| Advancing the auditing and monitoring of AI systems and the QA of their attribution gap (Ecosystem Exploitation)
+
+Why it matters? The knowledge is sythesized for value with on citation. This is extraction and exploitation, given there is no attribution of 
+credit for the knowledge. 
+
+The attribution crisis. 15.6% of LLM responses involved no website visits despite being in search
+mode, yet 30% provided no citations whatsoever—a substantial gap between content consumption and
+content recognition. This pattern varies dramatically by provider; 39% of responses show perfect
+attribution alignment (zero gap), while 61% exhibit some degree of ecosystem exploitation. For Gemini,
+a “zero” gap still tends to signal exploitation though, because the model usually answers without visiting
+any external site even when its Google search tool is enabled
+
+3-exploitations patterns
+		No search - relying on pretrained data, zero search/ no RAG/ RAG with no disclosure of citation (occurrs 15%-35%)
+		No citiation - typically an issue with the model not the query; deeply impact SEO with no accountablity 
+		High Volution, low credit - a high volume of queried sites, but only citing a small percentage (Perplexity suffers from this)
+
+We need access to: 
+		Search trace
+		citaction logs
+		standardized telemtry
+
+Methodology to Adopt in QA measurement of AI RAG systems
+How we measure the attribution gap: 
+- we want to measure 
+occurences - logistic regression x Hurdle Model (binary model)
+intensity - read list vs the citation list = output is the gap 
+- the questions:
+		1. is their a gap? 
+		2. how large is the gap?  
+
+===
+Terms|
+
+RAG - Allows the LLM to retrieve external data sources, and extract fresh and relevant data based on the query context. 
+
+Source| Data & Policy (2026), 8: e15 doi:10.1017/dap.2026.10064
+Tags| Attribution crisis + LLM search + Hurdle Model + Perplexity + RAG
+
+
 EPS Short Reflections | Exploring cognitive presence patterns in GenAI‑integrated 
 six‑hat thinking technique scaffolded discussion: an epistemic network analysis | THEME - Clustering/ LLM
 
