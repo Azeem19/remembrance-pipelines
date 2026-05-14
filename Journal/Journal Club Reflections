@@ -10,3 +10,94 @@ ROTATING PROMPTS (artifact + mission lens):
 • Where does this validate or challenge Cypher's data sovereignty stance?
 • How would Du Bois have visualized these findings?
 
+
+WK1| 5.12.26
+
+EPS Short Reflections | Exploring cognitive presence patterns in GenAI‑integrated 
+six‑hat thinking technique scaffolded discussion: an epistemic network analysis | THEME - Clustering/ LLM
+
+Prompt:  What does this teach me about non-extraction and community ownership?
+
+		Findings align with Essel et al. (2024) and Ahmad Al Yakin et al. (2023), who observed that using GenAI inspires students, improv-
+		ing creativity, critical thinking, and reflection.
+
+Response: I've been building with a philosophy tied non-extraction, while activating the benefits of GenAi tools. I think that the use of MOOCs
+and creating structured "spaces" for distinct thinking framework works addressing the same content is fundamentally how I work in Cypher when 
+producing Impact Labs. I usually use NLP tools to suppor my facilatition and reflecton. 
+Traditionally I trust the FREQ measures to shape QA (speaker ratioles, macro themes) But using a structure where we shift the human thinking model
+can be a powerful way to build strong relationships between ideation and integration. I see it in the work, but now with ENA
+we can measure it and possiblity improve from session to session or Lab to Lab using mapping and visual tools tied to LLMs definitely an immediate 
+add to the impact lab as an upgrade that shows ROI. 
+
+
+Key Insight| 
+
+MAIN: ENA allow us to measure the frequency + network relationship within the MOOC and the GenAi intervention for Digial CoPs
+
+1. The use of MOOCs x GENai was made viable for measurement by structuring the sequence of how students
+used the MOOC discussion, creating groups and a cadence for each "hat" discussion
+
+2. ENA is a network analysis tool for visualizing/mapping the relationship betwen phases of thinking to show how
+students share ideas, connect over space & time. 
+
+3. GenAI can be a SPRINGBOARD for highly creative ppl AND a CRUTCH for low creativity ppl
+
+Cogintive Presence: Triggers 			-->			Exploration 	-->			Integration  -->		Resolution 
+											.spark								  .gather data					.syntheszie        .interate
+											.curiosity							.explore							.solution build     .eval
+
+
+===
+Instruments 
+TTCT - test for creativity (divergent thinking, fluency in originality
+SCCT - test for creativity (cognitive operation, ideation fluency) 
+ENA Webkit (http:// app. epist emicn etwork. org) - used to analyze the coded discussion data 
+
+Source| Yu et al. Int J Educ Technol High Educ https://doi.org/10.1186/s41239-025-00545-x
+
+Tags| Learning Analytics + Cluster Analysis + AI Tools + MOOCs
+
+Terms|
+
+	1. Cognitive Presence -  situated within online
+collaborative learning environments, is defined as the level of cognitive engagement
+and critical thinking exhibited by learners during collaborative meaning-making
+processes (Garrison et al., 2001). Specifically, it refers to learners’ ability to collabo-
+ratively construct and validate meaning through sustained reflection and discourse
+within a learning community (Garrison et al., 2001). It is operationalized in the edu-
+cational context into four phases: Triggering, Exploration, Integration, and Resolusion (Garrison et al., 1999)
+
+	2. 6-Hat Thinking -  a thinking strategy tool introduced by Dr. Edward de Bono in
+1985. It simplifies the thinking process by encouraging thinkers to focus on one perspec-
+tive at a time. Each of the six hats is associated with a different color: blue, white, yellow,
+green, red, and black, each representing a unique way of thinking on a problem. 
+
+This multi-perspective thinking strategy not only fosters comprehensive analysis and reflection on the problem 
+(De Bono, 2017; Göçmen & Coşkun, 2019), but also provides space for students to develop critical thinking
+and creativity (House et al., 2011; Marrapodi, 2003). Furthermore, the method allows
+students to seamlessly switch between different thinking roles, including black for criti-
+cism, yellow for optimism, and red for emotions (De Bono, 2017; Göçmen & Coşkun,
+2019). These roles encourage students to think from multiple perspectives, prompting
+them to consciously evaluate and adjust their thinking processes and strategies during
+role transitions (Wei et al., 2018). The six-thinking hats tool is widely used in education. 
+
+	3. Epistemic Network Analysis - ENA constructs an epistemic network model by analyzing the co-occurrence of cog-
+nitive elements in discussion texts to reveal the interactions of cognitive engagement
+across different dimensions. It uses a sliding window mechanism to calculate co-occur-
+rences within specific segments, then transforms the data into an adjacency matrix,
+which is processed through normalization, dimension reduction, and singular value
+decomposition to visualize relationships between cognitive elements in a two-dimen-
+sional space (Swiecki et al., 2020). In the cognitive network, nodes represent cognitive
+elements, and the thickness of connections indicates the frequency of their co-occur-
+rence. ENA has proven effective in analyzing cognitive presence (Liu, Kong, Liu, et al.,
+2023a, 2023b). In this study, ENA Webkit (http:// app. epist emicn etwork. org) was used to
+analyze the coded discussion data (Shaffer et al., 2016). Nodes in the ENA network rep-
+resent cognitive presence codes, and edges reflect the frequency of connections between
+them.
+
+	4. The Community of Inquiry (CoI) framework, as proposed by Garrison et al. (2001),
+is a teaching and learning model that describes the key elements of social interac-
+tion and cognitive construction in online and blended education (Garrison et al.,
+2001). The CoI framework functions through the interaction of three dynamically
+interdependent elements: cognitive presence, social presence, and teaching presence
+(Kanuka & Garrison, 2004)
