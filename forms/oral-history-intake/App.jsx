@@ -71,25 +71,23 @@ document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revok
 };
 
 const sendToAirtable = async () => {
-setAirtableStatus(“sending”); setAirtableMsg(””);
-try {
-const res = await fetch(“https://api.anthropic.com/v1/messages”, {
-method: “POST”,
-headers: { “Content-Type”: “application/json” },
-body: JSON.stringify({
-model: “claude-sonnet-4-20250514”,
-max_tokens: 1000,
-messages: [{ role: “user”, content: `You are helping Cypher Innovation Studio log an oral history consent record for The Remembrance Day Project. Using the Airtable MCP, search for a base named "Remembrance", "Oral History", or "Community Data". If found, create a record with: Interviewee="${payload.interviewee}", Date="${payload.date}", Interviewer="${payload.interviewer}", ConsentFor="${payload.consent_for.join(", ")}", CommunityReview=${payload.community_review}, RecordedAt="${payload.consent_recorded_at}". If no base exists, say so and suggest creating one called "Oral History Consent Records". Reply in one sentence confirming what happened.` }],
-mcp_servers: [{ type: “url”, url: “https://mcp.airtable.com/mcp”, name: “airtable” }]
-})
-});
-const data = await res.json();
-const msg = (data.content||[]).filter(b=>b.type===“text”).map(b=>b.text).join(”\n”) || “Done.”;
-setAirtableMsg(msg); setAirtableStatus(“done”);
-} catch(e) {
-setAirtableMsg(“Could not reach Airtable. Check your Airtable MCP connection in Claude settings.”); setAirtableStatus(“error”);
-}
+  setAirtableStatus("sending"); setAirtableMsg("");
+  try {
+    const res = await fetch("https://cypher-consent-intake.raj28.workers.dev", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Worker error");
+    setAirtableMsg(data.message || "Record created successfully.");
+    setAirtableStatus("done");
+  } catch(e) {
+    setAirtableMsg(`Could not reach the consent worker: ${e.message}`);
+    setAirtableStatus("error");
+  }
 };
+
 
 const withdrawalPayload = {
 schema_version: “1.0”, action: “withdrawal”, project: “remembrance_day_project”,
