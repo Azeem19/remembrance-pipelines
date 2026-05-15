@@ -13,7 +13,7 @@ from pathlib import Path
 
 import whisper
 
-from pipeline.consent_check import require
+from pipeline.consent_gate import check
 
 
 def transcribe(audio_path: str | Path, consent_path: str | Path) -> dict:
@@ -23,7 +23,7 @@ def transcribe(audio_path: str | Path, consent_path: str | Path) -> dict:
     Returns a dict with keys: text, segments, language, interview_id.
     Segments include start/end timestamps and per-segment text.
     """
-    require(consent_path, "transcription")
+    check(consent_path, "transcription")
 
     audio_path = Path(audio_path)
     if not audio_path.exists():
@@ -59,6 +59,8 @@ def main() -> None:
     parser.add_argument("--consent", required=True, help="Path to consent.yaml")
     parser.add_argument("--output", default=None, help="Path to write transcript JSON")
     args = parser.parse_args()
+
+    check(args.consent, "transcription")
 
     result = transcribe(args.audio, args.consent)
 

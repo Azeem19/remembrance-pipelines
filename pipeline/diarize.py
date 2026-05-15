@@ -15,7 +15,7 @@ import json
 import os
 from pathlib import Path
 
-from pipeline.consent_check import require
+from pipeline.consent_gate import check
 
 
 def diarize(audio_path: str | Path, consent_path: str | Path) -> dict:
@@ -25,7 +25,7 @@ def diarize(audio_path: str | Path, consent_path: str | Path) -> dict:
     Returns a dict with interview_id and a list of turns:
       [{speaker, start, end}, ...]
     """
-    require(consent_path, "diarization")
+    check(consent_path, "diarization")
 
     audio_path = Path(audio_path)
     if not audio_path.exists():
@@ -93,6 +93,8 @@ def main() -> None:
     parser.add_argument("--transcript", default=None, help="Optional transcript JSON to enrich")
     parser.add_argument("--output", default=None, help="Path to write diarization JSON")
     args = parser.parse_args()
+
+    check(args.consent, "diarization")
 
     result = diarize(args.audio, args.consent)
 

@@ -17,7 +17,7 @@ from typing import Any
 
 import anthropic
 
-from pipeline.consent_check import require
+from pipeline.consent_gate import check
 
 MODEL = "claude-sonnet-4-6"
 
@@ -50,7 +50,7 @@ def tag_segments(
     Each segment must have: text, speaker, start, end.
     Returns the segments list with a 'tags' field added to each.
     """
-    require(consent_path, "thematic_tagging")
+    check(consent_path, "thematic_tagging")
 
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
@@ -91,6 +91,8 @@ def main() -> None:
     parser.add_argument("--consent", required=True, help="Path to consent.yaml")
     parser.add_argument("--output", default=None, help="Path to write tagged output JSON")
     args = parser.parse_args()
+
+    check(args.consent, "thematic_tagging")
 
     with open(args.transcript) as f:
         transcript = json.load(f)

@@ -45,11 +45,15 @@ class Signatures(BaseModel):
 class Embargo(BaseModel):
     active: bool
     lift_date: str | None = None
+    reason: str | None = None
 
 
 class CommunityReview(BaseModel):
     required: bool
     reviewed: bool
+    reviewer: str | None = None
+    reviewed_date: str | None = None
+    notes: str | None = None
 
 
 class ConsentDocument(BaseModel):
@@ -127,7 +131,7 @@ def validate(consent_path: str | Path, operation: ConsentField) -> ConsentDocume
     return doc
 
 
-def require(consent_path: str | Path, operation: ConsentField) -> ConsentDocument:
+def check(consent_path: str | Path, operation: ConsentField) -> ConsentDocument:
     """validate() wrapper that prints an error and exits on failure — use in CLI scripts."""
     try:
         return validate(consent_path, operation)
