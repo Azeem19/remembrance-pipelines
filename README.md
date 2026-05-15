@@ -1,73 +1,118 @@
-# remembrance-pipelines
+# Remembrance Pipelines
 
-> **The future is built from the stories we choose to remember.**
-> 
-> — Robert Azeem Jackson III, Cypher Innovation Studio
+Generative knowledge infrastructure for Black and marginalized communities — built on oral history preservation, consent-first data pipelines, and community archiving tools.
 
-Consent-first oral-history archive infrastructure for Black and marginalized communities. Built by Cypher Innovation Studio in partnership with The Remembrance Day Project.
+> "If you have some power, then your job is to empower somebody else." — Toni Morrison
+
+---
 
 ## Non-Extraction Statement
 
 This repository receives memory. It does not extract it.
 
-Community members, elders, and partners own their stories, their data, and their knowledge. Nothing in this codebase is designed to scrape, monetize, re-purpose, or re-use community oral histories without explicit, ongoing consent from the speakers themselves.
-
-Every script in this repo checks `consent.yaml` before processing any audio or text. No exceptions. No backdoors.
-
-**If you use this code, you inherit this commitment.** Privacy is not compliance. It is an act of legacy preservation.
+No audio, transcript, or personal narrative processed by these pipelines may be re-used, re-trained on, sold, licensed, or shared outside the originating community without explicit, renewed consent from the contributor. Consent is not a checkbox — it is an ongoing relationship. Every pipeline enforces a `consent.yaml` before touching any data.
 
 ---
 
-## What This Is
+## What This Does
 
-A Python + React pipeline for transcribing, tagging, and archiving oral histories with **community governance** at every step:
+An end-to-end pipeline for oral history preservation:
 
-- **Consent-first intake form** (React) — elders or community members control what gets recorded and how it can be used
-- **Whisper transcription** (large-v3) with speaker diarization via pyannote
-- **Thematic tagging** with Claude API, preserving speaker attribution
-- **Airtable-backed consent gate** — Community Data Council votes before anything goes public
-- **Ancestor Search RAG** — community-queryable archive powered by embeddings + Claude API
-- **Living Archive** — data stays in the community's hands; Cypher is the steward, not the owner
-
----
-
-## Active Partners
-
-- **Moorestown WestEnd Descendants Network** (Moorestown, NJ)
-- **Moorestown Historical Society** (Moorestown, NJ)
-- [pending] NYC/NJ/DC area school partner (curriculum pilot)
+1. **Transcription** — Whisper large-v3 converts audio to text
+2. **Diarization** — pyannote identifies and attributes speakers
+3. **Thematic Tagging** — Claude API (`claude-sonnet-4-6`) extracts themes with speaker attribution
+4. **Consent Enforcement** — every stage checks `consent.yaml` before proceeding
+5. **Archival Output** — structured JSON/Markdown outputs built to last
 
 ---
 
-## Technical Stack
+## Consent-First Principles
 
-- **Python 3.11** (uv/pip)
-- **Whisper large-v3** (transcription)
-- **pyannote.audio** (speaker diarization)
-- **Claude Sonnet 4.6** (thematic tagging + RAG)
-- **Chroma or Pinecone** (vector search)
-- **Airtable API** (consent governance + record store)
-- **React 18** + TypeScript (intake form UI)
-- **Cloudflare Workers** (API backend)
+- Every recording requires a valid `consent.yaml` co-signed by the contributor **before** any processing begins
+- `retention_until` dates are enforced — data is deleted when the window closes
+- `embargo` fields hold materials from public access until the community lifts the hold
+- `community_review` gates outputs behind a human review step before any release
+- No PII ever enters the git history — raw audio and transcripts are `.gitignore`d
 
----
-
-## Code Standards
-
-Every contributor must follow these rules. They're not suggestions:
-
-1. **Consent is the gate.** Every Python script checks `consent.yaml` before processing any audio or text. No processing without consent.
-2. **No PII in history.** Raw audio files, transcripts, and personal identifiers are in `.gitignore`. They never get committed.
-3. **Non-extraction first.** README (this file), CLAUDE.md, and code comments must reflect that community owns the data.
-4. **Color palette.** All visualizations use the Du Bois palette: `#215244` (deep teal), `#B37602` (bronze), `#4AB396` (sage green), `#D4A017` (burnt gold).
+See [`consent.yaml`](./consent.yaml) for the full schema and a placeholder template.
 
 ---
 
-## Getting Started
+## Project Structure
 
-See `CLAUDE.md` for the full architecture, toolchain decisions, and partner context.
+```
+rememebrance-pipelines/
+├── consent.yaml              # Consent schema — required before any processing
+├── pipeline/
+│   ├── consent_check.py      # Validates consent.yaml; halts pipeline if invalid
+│   ├── transcribe.py         # Whisper large-v3 transcription
+│   ├── diarize.py            # pyannote speaker diarization
+│   └── tag.py                # Claude API thematic tagging + speaker attribution
+├── data/
+│   ├── raw/                  # .gitignored — raw audio files
+│   ├── transcripts/          # .gitignored — intermediate transcripts
+│   └── outputs/              # Structured archival outputs
+├── tests/
+│   └── test_consent_check.py
+├── pyproject.toml
+└── requirements.txt
+```
 
-To run the transcription pipeline locally:
+---
+
+## Stack
+
+| Component | Tool |
+|---|---|
+| Runtime | Python 3.11 |
+| Package manager | uv / pip |
+| Transcription | openai-whisper large-v3 |
+| Diarization | pyannote.audio |
+| Thematic tagging | Claude API — `claude-sonnet-4-6` |
+| Vector search | Chroma / Pinecone |
+| Embeddings | sentence-transformers |
+| Data | pandas |
+| GPU runtime | Google Colab |
+
+---
+
+## Quickstart
 
 ```bash
-uv run python -m pipelines.transcribe path/to/audio.wav
+# Install dependencies
+pip install -r requirements.txt
+
+# Copy and fill out consent template for your recording
+cp consent.yaml data/raw/my-interview-consent.yaml
+# Edit the file — every field is required
+
+# Run the pipeline
+python -m pipeline.transcribe --audio data/raw/interview.wav \
+                               --consent data/raw/my-interview-consent.yaml
+```
+
+The pipeline will refuse to run if `consent.yaml` is missing, unsigned, or expired.
+
+---
+
+## Partners
+
+- **Moorestown WestEnd Descendants Network** — community stewardship and oral history contributors
+- **Moorestown Historical Society** — archival partnership and research support
+- **KIPP NYC** — curriculum pilot program
+
+---
+
+## Data Sovereignty
+
+Community contributors retain full ownership of their stories at every stage. Cypher LLC and The Remembrance Day Project act as stewards, not owners. All data is stored in contributor-controlled storage. Nothing leaves without written consent.
+
+---
+
+## License
+
+Community data is not licensed. Code in this repository is released under [MIT License](./LICENSE) for the infrastructure only — not the stories it carries.
+
+---
+
+*Built by Robert Azeem Jackson III | Cypher LLC | The Remembrance Day Project*

@@ -1,0 +1,61 @@
+# Raw audio — never commit
+data/raw/*.wav
+data/raw/*.mp3
+data/raw/*.m4a
+data/raw/*.flac
+data/raw/*.ogg
+data/raw/*.aac
+
+# Transcripts — may contain PII
+data/transcripts/
+
+# Outputs containing PII or embargoed content
+data/outputs/*.json
+data/outputs/*.txt
+data/outputs/*.md
+
+# Keep the directory structure
+!data/raw/.gitkeep
+!data/transcripts/.gitkeep
+!data/outputs/.gitkeep
+
+# Consent files with real contributor data
+# (template consent.yaml at repo root is safe to commit)
+data/raw/*-consent.yaml
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+
+# Secrets and API keys
+.env.local
+*.env
+secrets.yaml
+secrets.json
+api_keys.txt
+
+# Hugging Face / model cache
+.cache/
+models/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# OS
+.DS_Store
+Thumbs.db
