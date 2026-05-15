@@ -27,12 +27,14 @@ fields:
     required: true
     min_items: 1
     enum:
-      - transcription
-      - thematic_tagging
-      - archival_storage
-      - educational_use
-      - public_exhibition
-      - community_sharing
+      - transcription       # automated speech-to-text
+      - diarization         # speaker identification (pipeline use)
+      - thematic_tagging    # AI theme and metadata extraction
+      - archival_storage    # storage in community archive
+      - educational_use     # educational or curriculum inclusion
+      - public_exhibition   # any public-facing display or release
+      - community_sharing   # sharing within partner community networks
+      - research_use        # academic or institutional research use
 
   retention_until:
     type: string

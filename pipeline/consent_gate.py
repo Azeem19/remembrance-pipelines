@@ -20,9 +20,10 @@ ConsentField = Literal[
     "transcription",
     "diarization",
     "thematic_tagging",
-    "internal_archive",
-    "public_release",
-    "curriculum_use",
+    "archival_storage",
+    "educational_use",
+    "public_exhibition",
+    "community_sharing",
     "research_use",
 ]
 
@@ -60,7 +61,7 @@ class ConsentDocument(BaseModel):
     schema_version: str
     contributor: dict
     recording: dict
-    consent_for: dict[str, bool]
+    consent_for: list[str]
     retention_until: str
     embargo: Embargo
     community_review: CommunityReview
@@ -123,7 +124,7 @@ def validate(consent_path: str | Path, operation: ConsentField) -> ConsentDocume
                 "Recording is under embargo — processing is not permitted"
             )
 
-    if not doc.consent_for.get(operation):
+    if operation not in doc.consent_for:
         raise ConsentError(
             f"Contributor has not consented to '{operation}' for this recording"
         )

@@ -20,8 +20,10 @@ data/outputs/*.md
 !data/outputs/.gitkeep
 
 # Consent files with real contributor data
-# (template consent.yaml at repo root is safe to commit)
+# (consent.yaml at repo root and data/consent_template.yaml are safe to commit)
 data/raw/*-consent.yaml
+data/consent_*.yaml
+!data/consent_template.yaml
 
 # Python
 __pycache__/

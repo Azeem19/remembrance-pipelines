@@ -23,14 +23,18 @@ recording:
   language: en                         # BCP 47 language tag, e.g. "en", "es", "ht"
 
 # ── Consent Scope ──────────────────────────────────────────────────────────────
-consent_for:
-  transcription: false       # Set true to allow automated speech-to-text
-  diarization: false         # Set true to allow speaker identification
-  thematic_tagging: false    # Set true to allow AI theme extraction
-  internal_archive: false    # Set true to store in community archive
-  public_release: false      # Set true to allow any public-facing use
-  curriculum_use: false      # Set true for educational/curriculum inclusion
-  research_use: false        # Set true for academic research use
+# List only the uses that are explicitly consented to. Remove any that do not apply.
+# Valid values are defined in data/consent.schema.yaml under fields.consent_for.enum
+consent_for: []
+# Available values:
+#   - transcription       automated speech-to-text
+#   - diarization         speaker identification
+#   - thematic_tagging    AI theme and metadata extraction
+#   - archival_storage    storage in community archive
+#   - educational_use     educational or curriculum inclusion
+#   - public_exhibition   any public-facing display or release
+#   - community_sharing   sharing within partner community networks
+#   - research_use        academic or institutional research use
 
 # ── Retention ──────────────────────────────────────────────────────────────────
 retention_until: PLACEHOLDER_DATE      # ISO 8601 date — data is deleted after this date

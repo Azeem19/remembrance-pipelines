@@ -35,15 +35,12 @@ def write_consent(tmp_path: Path, overrides: dict) -> Path:
             "location": "Test City",
             "language": "en",
         },
-        "consent_for": {
-            "transcription": True,
-            "diarization": True,
-            "thematic_tagging": True,
-            "internal_archive": True,
-            "public_release": False,
-            "curriculum_use": False,
-            "research_use": False,
-        },
+        "consent_for": [
+            "transcription",
+            "diarization",
+            "thematic_tagging",
+            "archival_storage",
+        ],
         "retention_until": "2099-01-01",
         "embargo": {
             "active": False,
@@ -132,9 +129,9 @@ def test_lifted_embargo_passes(tmp_path):
 
 
 def test_unconsented_operation_raises(tmp_path):
-    p = write_consent(tmp_path, {})
-    with pytest.raises(ConsentError, match="public_release"):
-        validate(p, "public_release")
+    p = write_consent(tmp_path, {"consent_for": ["transcription", "diarization"]})
+    with pytest.raises(ConsentError, match="public_exhibition"):
+        validate(p, "public_exhibition")
 
 
 def test_placeholder_value_raises(tmp_path):
@@ -168,6 +165,27 @@ def test_community_review_optional_fields_accepted(tmp_path):
     doc = validate(p, "transcription")
     assert doc.community_review.reviewer == "Elder Jones"
     assert doc.community_review.reviewed_date == "2025-03-01"
+
+
+def test_all_pipeline_operations_coverable(tmp_path):
+    """Each operation the pipeline may request can be consented to and validated."""
+    pipeline_ops = ["transcription", "diarization", "thematic_tagging"]
+    p = write_consent(tmp_path, {"consent_for": pipeline_ops})
+    for op in pipeline_ops:
+        doc = validate(p, op)
+        assert op in doc.consent_for
+
+
+def test_merged_schema_enum_values_accepted(tmp_path):
+    """All enum values from data/consent.schema.yaml are valid consent_for entries."""
+    all_values = [
+        "transcription", "diarization", "thematic_tagging",
+        "archival_storage", "educational_use", "public_exhibition",
+        "community_sharing", "research_use",
+    ]
+    p = write_consent(tmp_path, {"consent_for": all_values})
+    doc = validate(p, "transcription")
+    assert set(all_values) == set(doc.consent_for)
 
 
 # ── Template file test ───────────────────────────────────────────────────────
