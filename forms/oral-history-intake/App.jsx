@@ -71,12 +71,9 @@ document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revok
 };
 
 const sendToAirtable = async () => {
-  setAirtableStatus("sending");
-  setAirtableMsg("");
+  setAirtableStatus("sending"); setAirtableMsg("");
   try {
-    const workerUrl = import.meta.env.VITE_WORKER_URL
-      || "https://your-worker.your-subdomain.workers.dev";
-    const res = await fetch(workerUrl, {
+    const res = await fetch("https://cypher-consent-intake.raj28.workers.dev", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -85,7 +82,7 @@ const sendToAirtable = async () => {
     if (!res.ok) throw new Error(data.error || "Worker error");
     setAirtableMsg(data.message || "Record created successfully.");
     setAirtableStatus("done");
-  } catch (e) {
+  } catch(e) {
     setAirtableMsg(`Could not reach the consent worker: ${e.message}`);
     setAirtableStatus("error");
   }
