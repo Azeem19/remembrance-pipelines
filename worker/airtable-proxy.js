@@ -5,13 +5,27 @@
 // Deploy via: wrangler deploy
 
 const AIRTABLE_BASE_ID = "appXFYw4mym1tKckG";
-const AIRTABLE_TABLE  = "Consent Records";
+const AIRTABLE_TABLE  = "Consent_form";
 const AIRTABLE_URL    = `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${encodeURIComponent(AIRTABLE_TABLE)}`;
 
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin":  "*",
   "Access-Control-Allow-Methods": "POST, OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type",
+};
+
+// Map form values to Airtable multipleSelects option names (case-sensitive)
+const CONSENT_LABEL = {
+  transcription:    "Transcription",
+  archival_storage: "Archival_storage",
+  educational_use:  "Educational_use",
+  public_exhibition:"Public_exhibition",
+};
+
+// Map form retention values to Airtable singleSelect option names
+const RETENTION_LABEL = {
+  indefinite:       "Indefinite",
+  until_withdrawn:  "Until_withdrawn",
 };
 
 export default {
@@ -42,20 +56,19 @@ export default {
       }
     }
 
-    // Map form JSON → Airtable fields
+    const retentionRaw = payload.retention_until ?? "indefinite";
+
+    // Map form JSON → Airtable fields (aligned to Consent_form table schema)
     const fields = {
       Interviewee:     payload.interviewee,
-      Date:            payload.date,
       Interviewer:     payload.interviewer,
-      Location:        payload.location        ?? "",
-      ConsentFor:      (payload.consent_for ?? []).join(", "),
-      RetentionUntil:  payload.retention_until ?? "indefinite",
-      Embargo:         payload.embargo         ?? "",
+      "Consent For":   (payload.consent_for ?? []).map(v => CONSENT_LABEL[v] ?? v),
+      RetentionUntil:  RETENTION_LABEL[retentionRaw] ?? retentionRaw,
+      Embargo:         payload.embargo || null,
       CommunityReview: payload.community_review ?? true,
-      Notes:           payload.notes           ?? "",
+      Note:            payload.notes ?? "",
       Initials:        payload.signed_by_initials ?? "",
-      RecordedAt:      payload.consent_recorded_at ?? new Date().toISOString(),
-      Status:          "Pending Review",
+      Status:          "Pending",
       RawJSON:         JSON.stringify(payload),
     };
 
@@ -79,7 +92,7 @@ export default {
     return json({
       success: true,
       record_id: airtableData.id,
-      message: `Consent record created for ${payload.interviewee}. Status: Pending Review.`
+      message: `Consent record created for ${payload.interviewee}. Status: Pending.`
     }, 201);
   }
 };
