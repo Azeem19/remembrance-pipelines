@@ -2,7 +2,6 @@ import React, { useState, useMemo } from “react”;
 
 const LOGO = null;
 
-
 export default function OralHistoryIntakeForm() {
 const today = new Date().toISOString().split(“T”)[0];
 const [form, setForm] = useState({
@@ -72,23 +71,22 @@ document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revok
 };
 
 const sendToAirtable = async () => {
-  setAirtableStatus("sending"); setAirtableMsg("");
-  try {
-    const res = await fetch("https://cypher-consent-intake.raj28.workers.dev", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || "Worker error");
-    setAirtableMsg(data.message || "Record created successfully.");
-    setAirtableStatus("done");
-  } catch(e) {
-    setAirtableMsg(`Could not reach the consent worker: ${e.message}`);
-    setAirtableStatus("error");
-  }
+setAirtableStatus(“sending”); setAirtableMsg(””);
+try {
+const res = await fetch(“https://cypher-consent-intake.raj28.workers.dev”, {
+method: “POST”,
+headers: { “Content-Type”: “application/json” },
+body: JSON.stringify(payload),
+});
+const data = await res.json();
+if (!res.ok) throw new Error(data.error || “Worker error”);
+setAirtableMsg(data.message || “Consent record created in Airtable. Status: Pending Review.”);
+setAirtableStatus(“done”);
+} catch(e) {
+setAirtableMsg(`Worker error: ${e.message}. Check that AIRTABLE_TOKEN is set in your Cloudflare Worker settings.`);
+setAirtableStatus(“error”);
+}
 };
-
 
 const withdrawalPayload = {
 schema_version: “1.0”, action: “withdrawal”, project: “remembrance_day_project”,
@@ -137,7 +135,7 @@ return (
     {/* HEADER — real Cypher logo */}
     <header className="mb-14">
       <div className="mb-10">
-        <span style={{color:"#B37602", fontWeight:700, letterSpacing:"0.15em", fontSize:"13px"}}>CYPHER</span>
+        <img src={`data:image/png;base64,${LOGO}`} alt="Cypher Innovation Studio" style={{ height: "60px", width: "auto", objectFit: "contain", display: "block" }} />
       </div>
       <h1 className="display text-4xl md:text-5xl leading-[1.05] mb-7 tracking-tight" style={{ color: "#215244", fontWeight: 500 }}>
         Oral History<br /><span style={{ fontStyle: "italic", color: "#B37602" }}>Intake & Consent</span>
