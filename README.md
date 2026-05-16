@@ -99,7 +99,7 @@ The pipeline will refuse to run if `consent.yaml` is missing, unsigned, or expir
 
 - **Moorestown WestEnd Descendants Network** — community stewardship and oral history contributors
 - **Moorestown Historical Society** — archival partnership and research support
-- **KIPP NYC** — curriculum pilot program
+- **PA/NYC Schools** — curriculum pilot program
 
 ---
 
