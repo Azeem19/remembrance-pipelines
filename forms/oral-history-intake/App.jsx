@@ -79,11 +79,20 @@ headers: { "Content-Type": "application/json" },
 body: JSON.stringify(payload),
 });
 const data = await res.json();
-if (!res.ok) throw new Error(data.error || "Worker error");
-setAirtableMsg(data.message || "Consent record created in Airtable. Status: Pending Review.");
+if (!res.ok) {
+const hint =
+data?.detail?.error?.message ??
+data?.detail?.message ??
+data?.error ??
+"unknown error";
+setAirtableMsg(`Submission failed — ${hint}`);
+setAirtableStatus("error");
+return;
+}
+setAirtableMsg(data.message || "Consent record created. Status: Pending Review.");
 setAirtableStatus("done");
 } catch(e) {
-setAirtableMsg(`Worker error: ${e.message}. Check that AIRTABLE_TOKEN is set in your Cloudflare Worker settings.`);
+setAirtableMsg("Could not reach the submission worker — check your network connection.");
 setAirtableStatus("error");
 }
 };
