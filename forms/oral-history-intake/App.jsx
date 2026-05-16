@@ -1,48 +1,48 @@
-import React, { useState, useMemo } from “react”;
+import React, { useState, useMemo } from "react";
 
 const LOGO = null;
 
 export default function OralHistoryIntakeForm() {
-const today = new Date().toISOString().split(“T”)[0];
+const today = new Date().toISOString().split("T")[0];
 const [form, setForm] = useState({
-interviewee: “”, date: today, interviewer: “”, location: “”,
+interviewee: "", date: today, interviewer: "", location: "",
 consent_for: { transcription: false, archival_storage: false, educational_use: false, public_exhibition: false },
-retention_until: “indefinite”, embargo: “”, community_review: true, notes: “”,
+retention_until: "indefinite", embargo: "", community_review: true, notes: "",
 });
-const [initials, setInitials] = useState(””);
+const [initials, setInitials] = useState("");
 const [showJson, setShowJson] = useState(false);
 const [copied, setCopied] = useState(false);
 const [airtableStatus, setAirtableStatus] = useState(null);
-const [airtableMsg, setAirtableMsg] = useState(””);
+const [airtableMsg, setAirtableMsg] = useState("");
 const [showWithdrawal, setShowWithdrawal] = useState(false);
 const [withdrawal, setWithdrawal] = useState({
-interviewee: “”, original_date: “”, withdraw_all: true,
+interviewee: "", original_date: "", withdraw_all: true,
 withdraw_items: { transcription: false, archival_storage: false, educational_use: false, public_exhibition: false },
-notes: “”
+notes: ""
 });
 const [withdrawalJson, setWithdrawalJson] = useState(false);
 
 const consentItems = [
-{ key: “transcription”, label: “Transcription”, desc: “Audio may be transcribed using Whisper and the Claude API to create a searchable text record.” },
-{ key: “archival_storage”, label: “Archival storage”, desc: “Recording and transcript may be preserved in the community archive for future generations.” },
-{ key: “educational_use”, label: “Educational use”, desc: “Excerpts may appear in school curriculum, youth programming, and community workshops.” },
-{ key: “public_exhibition”, label: “Public exhibition”, desc: “Material may appear in dashboards, exhibits, podcasts, or media — only after Council approval.” },
+{ key: "transcription", label: "Transcription", desc: "Audio may be transcribed using Whisper and the Claude API to create a searchable text record." },
+{ key: "archival_storage", label: "Archival storage", desc: "Recording and transcript may be preserved in the community archive for future generations." },
+{ key: "educational_use", label: "Educational use", desc: "Excerpts may appear in school curriculum, youth programming, and community workshops." },
+{ key: "public_exhibition", label: "Public exhibition", desc: "Material may appear in dashboards, exhibits, podcasts, or media — only after Council approval." },
 ];
 
 const retentionOptions = [
-{ value: “indefinite”, label: “Indefinite — held in trust by the community” },
-{ value: “50_years”, label: “50 years” },
-{ value: “25_years”, label: “25 years” },
-{ value: “10_years”, label: “10 years” },
-{ value: “until_withdrawn”, label: “Until I withdraw consent” },
+{ value: "indefinite", label: "Indefinite — held in trust by the community" },
+{ value: "50_years", label: "50 years" },
+{ value: "25_years", label: "25 years" },
+{ value: "10_years", label: "10 years" },
+{ value: "until_withdrawn", label: "Until I withdraw consent" },
 ];
 
-const toggleConsent = (k) => setForm(f => ({ …f, consent_for: { …f.consent_for, [k]: !f.consent_for[k] } }));
+const toggleConsent = (k) => setForm(f => ({ ...f, consent_for: { ...f.consent_for, [k]: !f.consent_for[k] } }));
 
 const payload = useMemo(() => ({
-schema_version: “1.0”,
-project: “remembrance_day_project”,
-steward: “cypher_innovation_studio”,
+schema_version: "1.0",
+project: "remembrance_day_project",
+steward: "cypher_innovation_studio",
 interviewee: form.interviewee.trim(),
 date: form.date,
 interviewer: form.interviewer.trim(),
@@ -63,73 +63,72 @@ const handleCopy = async () => {
 try { await navigator.clipboard.writeText(jsonText); setCopied(true); setTimeout(() => setCopied(false), 2000); } catch {}
 };
 const handleDownload = () => {
-const blob = new Blob([jsonText], { type: “application/json” });
+const blob = new Blob([jsonText], { type: "application/json" });
 const url = URL.createObjectURL(blob);
-const a = document.createElement(“a”);
+const a = document.createElement("a");
 a.href = url; a.download = `consent_${form.interviewee.replace(/\s+/g,"_").toLowerCase()||"interview"}_${form.date}.json`;
 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
 };
 
 const sendToAirtable = async () => {
-setAirtableStatus(“sending”); setAirtableMsg(””);
+setAirtableStatus("sending"); setAirtableMsg("");
 try {
-const res = await fetch(“https://cypher-consent-intake.raj28.workers.dev”, {
-method: “POST”,
-headers: { “Content-Type”: “application/json” },
+const res = await fetch("https://cypher-consent-intake.raj28.workers.dev", {
+method: "POST",
+headers: { "Content-Type": "application/json" },
 body: JSON.stringify(payload),
 });
 const data = await res.json();
-if (!res.ok) throw new Error(data.error || “Worker error”);
-setAirtableMsg(data.message || “Consent record created in Airtable. Status: Pending Review.”);
-setAirtableStatus(“done”);
+if (!res.ok) throw new Error(data.error || "Worker error");
+setAirtableMsg(data.message || "Consent record created in Airtable. Status: Pending Review.");
+setAirtableStatus("done");
 } catch(e) {
 setAirtableMsg(`Worker error: ${e.message}. Check that AIRTABLE_TOKEN is set in your Cloudflare Worker settings.`);
-setAirtableStatus(“error”);
+setAirtableStatus("error");
 }
 };
 
 const withdrawalPayload = {
-schema_version: “1.0”, action: “withdrawal”, project: “remembrance_day_project”,
+schema_version: "1.0", action: "withdrawal", project: "remembrance_day_project",
 interviewee: withdrawal.interviewee.trim(), original_interview_date: withdrawal.original_date,
-withdraw_items: withdrawal.withdraw_all ? [“all”] : Object.entries(withdrawal.withdraw_items).filter(([,v])=>v).map(([k])=>k),
+withdraw_items: withdrawal.withdraw_all ? ["all"] : Object.entries(withdrawal.withdraw_items).filter(([,v])=>v).map(([k])=>k),
 notes: withdrawal.notes.trim() || null,
 withdrawal_recorded_at: new Date().toISOString(),
 };
 const withdrawalJsonText = JSON.stringify(withdrawalPayload, null, 2);
 const handleDownloadWithdrawal = () => {
-const blob = new Blob([withdrawalJsonText], { type: “application/json” });
+const blob = new Blob([withdrawalJsonText], { type: "application/json" });
 const url = URL.createObjectURL(blob);
-const a = document.createElement(“a”);
+const a = document.createElement("a");
 a.href = url; a.download = `withdrawal_${withdrawal.interviewee.replace(/\s+/g,"_").toLowerCase()||"record"}_${today}.json`;
 document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
 };
 
 const Toggle = ({ on, onClick, ariaLabel }) => (
-<button type=“button” role=“switch” aria-checked={on} aria-label={ariaLabel} onClick={onClick}
-className=“relative inline-flex h-7 w-12 flex-shrink-0 items-center rounded-full transition-colors duration-200”
-style={{ backgroundColor: on ? “#215244” : “#D9CFC0” }}>
-<span className=“inline-block h-5 w-5 rounded-full transition-transform duration-200”
-style={{ transform: on ? “translateX(24px)” : “translateX(4px)”, backgroundColor: on ? “#B37602” : “#fff”, boxShadow: “0 1px 3px rgba(0,0,0,0.25)” }} />
+<button type="button" role="switch" aria-checked={on} aria-label={ariaLabel} onClick={onClick}
+className="relative inline-flex h-7 w-12 flex-shrink-0 items-center rounded-full transition-colors duration-200"
+style={{ backgroundColor: on ? "#215244" : "#D9CFC0" }}>
+<span className="inline-block h-5 w-5 rounded-full transition-transform duration-200"
+style={{ transform: on ? "translateX(24px)" : "translateX(4px)", backgroundColor: on ? "#B37602" : "#fff", boxShadow: "0 1px 3px rgba(0,0,0,0.25)" }} />
 </button>
 );
 const SectionHeader = ({ numeral, title, kicker }) => (
 <div className="mb-6">
 <div className="flex items-baseline gap-4 mb-1">
-<span className=“display text-2xl italic” style={{ color: “#B37602” }}>{numeral}</span>
-<h2 className=“display text-2xl md:text-3xl tracking-tight” style={{ color: “#215244”, fontWeight: 500 }}>{title}</h2>
+<span className="display text-2xl italic" style={{ color: "#B37602" }}>{numeral}</span>
+<h2 className="display text-2xl md:text-3xl tracking-tight" style={{ color: "#215244", fontWeight: 500 }}>{title}</h2>
 </div>
-{kicker && <p className=“text-sm leading-relaxed pl-10” style={{ color: “#2D5A52” }}>{kicker}</p>}
+{kicker && <p className="text-sm leading-relaxed pl-10" style={{ color: "#2D5A52" }}>{kicker}</p>}
 </div>
 );
 const Label = ({ children }) => (
-<span className=“block text-[11px] tracking-[0.18em] uppercase mb-1” style={{ color: “#215244”, fontWeight: 500 }}>{children}</span>
+<span className="block text-[11px] tracking-[0.18em] uppercase mb-1" style={{ color: "#215244", fontWeight: 500 }}>{children}</span>
 );
 
 return (
-<div className=“min-h-screen w-full” style={{ backgroundColor: “#F5EFE3”, color: “#1A1A1A”, fontFamily: ‘“IBM Plex Sans”, system-ui, sans-serif’ }}>
+<div className="min-h-screen w-full" style={{ backgroundColor: "#F5EFE3", color: "#1A1A1A", fontFamily: '"IBM Plex Sans", system-ui, sans-serif' }}>
 <style>{`@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400&display=swap'); .display { font-family: 'Fraunces', Georgia, serif; } .mono { font-family: 'IBM Plex Mono', monospace; } .field-input { font-family: inherit; background: transparent; border: none; border-bottom: 1px solid rgba(33,82,68,0.4); padding: 6px 0 8px; width: 100%; color: #1A1A1A; font-size: 16px; outline: none; transition: border-color 0.2s; border-radius: 0; } .field-input::placeholder { color: rgba(33,82,68,0.4); } .field-input:focus { border-bottom: 2px solid #B37602; } select.field-input { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23215244' d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 4px center; padding-right: 24px; cursor: pointer; } textarea.field-input { resize: vertical; min-height: 64px; } .ornament-line { background-image: linear-gradient(to right,#215244 40%,transparent 40%); background-size: 8px 1px; background-repeat: repeat-x; height: 1px; } .btn { font-family: inherit; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; font-size: 12px; padding: 13px 26px; border: none; cursor: pointer; transition: all 0.2s; } .btn:disabled { opacity: 0.4; cursor: not-allowed; } .btn-teal { background: #215244; color: #F5EFE3; } .btn-teal:hover:not(:disabled) { background: #2D5A52; transform: translateY(-1px); } .btn-outline { background: transparent; color: #215244; border: 1px solid #215244; } .btn-outline:hover:not(:disabled) { background: #215244; color: #F5EFE3; } .btn-gold { background: #B37602; color: #F5EFE3; } .btn-gold:hover:not(:disabled) { background: #215244; } .json-pre { font-family: 'IBM Plex Mono', monospace; font-size: 12px; line-height: 1.65; color: #F5EFE3; background: #215244; padding: 22px; overflow-x: auto; white-space: pre; border-left: 3px solid #B37602; } .sec-divider { border-color: rgba(33,82,68,0.18); }`}</style>
 
-```
   <div className="max-w-3xl mx-auto px-6 py-12 md:py-20">
 
     {/* HEADER — real Cypher logo */}
@@ -261,7 +260,7 @@ return (
     {showJson && formValid && (
       <div className="mb-10">
         <button className="btn btn-gold" onClick={sendToAirtable} disabled={airtableStatus==="sending"}>
-          {airtableStatus==="sending"?"Sending to Airtable…":"Send to Airtable"}
+          {airtableStatus==="sending"?"Sending to Airtable...":"Send to Airtable"}
         </button>
         {airtableMsg && (
           <div className="mt-4 p-4 text-sm" style={{borderLeft:`3px solid ${airtableStatus==="error"?"#B37602":"#4AB396"}`,backgroundColor:"rgba(33,82,68,0.05)"}}>
@@ -353,7 +352,6 @@ return (
     </footer>
   </div>
 </div>
-```
 
 );
 }

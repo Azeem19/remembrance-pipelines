@@ -56,6 +56,11 @@ models/
 .ipynb_checkpoints/
 *.ipynb
 
+# Node / Vite (forms/oral-history-intake)
+node_modules/
+*.log
+npm-debug.log*
+
 # OS
 .DS_Store
 Thumbs.db
