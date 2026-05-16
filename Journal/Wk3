@@ -1,7 +1,5 @@
 What did data sovereignty mean this week, in code?
 
-Week 3.  Q: What did data sovereignty mean this week, in code?
-
 ENTRY KEYS: 
 defining data sovereignity --  DEFINE(data + sovereignity) 
 
@@ -36,6 +34,23 @@ Takeaway:
 
 Wk2 summary:
 
-- 
+- I'm building the tools that I want/ intend my family to use. 
+- Creating consent functionality as a features. 
+- I thikn the website will be a beaacon, so it needs to function differenlty in the future. 
 
- week, in code?
+Week 3.  Q: What did data sovereignty mean this week, in code?
+
+Wk3 Key: 
+
+In Relation: 
+personal - I spent hours ensuring that that we build end-to-end witih our principles in mind. Thus we've build our inttake from scratch to ensure we understand any risk from UX frontend. 
+interpersonal - Others - I'm confident that the UX looks familar and is simple and clean. I wanted to ensure permission, not capture all the date at once
+interpoperable - Systems - [CTA] We're now using CloudeFare (worker) + Vercel + Airtable + Github + Claude Code. I need to spend time investigating where information moves!
+Cypher - Manages the data pipeline, application updates, feature changes and UX QA. Not user facing but is customer facing for the data pieces that 
+have consent for use in research, edu, and public. 
+Remembrance - We're buiding an artifact to inform the RIL prototype. It took maybe a 5-8 days. And it will save us a lot of work when this form is highly popular. We could
+have kept it as a static HTML. But keeping it at jsx React application allows us to function for scale, today. 
+
+
+
+
