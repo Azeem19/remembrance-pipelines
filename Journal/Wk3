@@ -42,6 +42,21 @@ Week 3.  Q: What did data sovereignty mean this week, in code?
 
 Wk3 Key: 
 
+I read a paper through my journal club subscription, "The attribution crisis in LLM search results: Estimating ecosystem exploitation". See Journal Club Reflections
+It shaped this weeks refleciton on sovereignity by validating the current standards of LLM use that are problematic. A lack of attibution is a crisis
+in the internet, and also with how LLM and other apps are used on our phones, smart tvs, games, cars, and applications. Just as their is exploitation of value
+in the internet extraction, the extraction from people, their data, is exploitation, and also not offering value in the outputs, at least not immediate value. 
+
+Our work is non-extractive, and intends to avoid exploitation but provide consent feautres, a council of review, an embargo function, even before we collect
+a single piece of audio data. No attribution risk due to to the need for specfic consent as a way to begin the process. 
+
+I'm invested in locally owned systems and thus my bet is a database x LLM powerd system of elders data, linked to location, space, timelines, and specific themes will
+not have attribution issues due to the sourcing and process of sourcing. I don't know how critacal RAG will be, but I'm sure it will be. And I do imagine eventually i'll
+have to test attribition gaps when this tool is being asked to serve users beyond the demo/ prototype phase.
+
+The paper 
+
+
 In Relation: 
 personal - I spent hours ensuring that that we build end-to-end witih our principles in mind. Thus we've build our inttake from scratch to ensure we understand any risk from UX frontend. 
 interpersonal - Others - I'm confident that the UX looks familar and is simple and clean. I wanted to ensure permission, not capture all the date at once
